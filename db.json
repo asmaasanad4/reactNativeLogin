@@ -1,0 +1,41 @@
+{
+    "users": [
+      {
+        "id": 1,
+        "name": "Asmaa",
+        "email": "asmaa@as.com",
+        "password": "1234"
+      }
+      
+    ],
+    "product": [
+      {
+        "id": 1,
+        "image":"https://images.pexels.com/photos/6292/blue-pattern-texture-macro.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+        "name": "product one",
+        "price": "20$",
+        "description": "This is a product. This is a product. This is a product"
+      },
+      {
+        "id": 2,
+        "image": "https://cdn.pixabay.com/photo/2016/10/02/22/17/red-t-shirt-1710578_1280.jpg",
+        "name": "Red Shirt",
+        "price": "10$",
+        "description": "A red t-shirt, perfect for days with non-red weather."
+      },
+      {
+        "id": 3,
+        "image": "https://images.pexels.com/photos/160834/coffee-cup-and-saucer-black-coffee-loose-coffee-beans-160834.jpeg?cs=srgb&dl=bean-beans-black-coffee-160834.jpg&fm=jpg",
+        "name": "Coffee Mug",
+        "price": "13$",
+        "description": "Can also be used for tea!"
+      },
+      {
+        "id": 4,
+        "image": "https://cdn.pixabay.com/photo/2015/10/03/02/14/pen-969298_1280.jpg",
+        "name": "Pen & Paper",
+        "price": "15$",
+        "description": "Can be used for role-playing (not the kind of role-playing you're thinking about...)."
+      }
+    ]
+  }
