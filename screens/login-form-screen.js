@@ -20,7 +20,7 @@ const LoginFormScreen = (props) => {
   const loginHandler = () => {
     dispatch(action.tryLogin(email, password));
     console.log(email, password, "email password");
-    fetch(`http://c27389f01ad7.ngrok.io/users`)
+    fetch(`http://b17b25b58907.ngrok.io/users`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data[0].email, data[0].password, "ddddddddd");
@@ -87,7 +87,8 @@ const styles = StyleSheet.create({
   },
   container: {
     backgroundColor: "white",
-    borderRadius: 20,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
     alignItems: "center",
     paddingBottom: 20,
   },

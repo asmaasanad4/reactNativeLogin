@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FlatList, StyleSheet } from "react-native";
+import { FlatList } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
@@ -22,23 +22,14 @@ const HomePageScreen = (props) => {
         image={itemData.item.image}
         name={itemData.item.name}
         price={itemData.item.price}
-        onSelect={() => {
-          props.navigation.navigate({
-            routeName: "ProductDetails",
-            params: {
-              pName: itemData.item.name,
-              pPrice: itemData.item.price,
-              pImage: itemData.item.image,
-              pDescription: itemData.item.description,
-            },
-          });
-        }}
+        id={itemData.item.id}
+        description={itemData.item.description}
       />
     );
   };
 
   useEffect(() => {
-    fetch(`http://c27389f01ad7.ngrok.io/product`)
+    fetch(`http://b17b25b58907.ngrok.io/product`)
       .then((response) => response.json())
       .then((data) => {
         setProductsData(data);
@@ -62,12 +53,16 @@ HomePageScreen.navigationOptions = (navData) => {
     headerTitle: "Home ",
     headerRight: () => (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
-        <Item title="Cart" iconName="md-cart" />
+        <Item
+          title="Cart"
+          iconName="md-cart"
+          onPress={() => {
+            navData.navigation.navigate("Checkout");
+          }}
+        />
       </HeaderButtons>
     ),
   };
 };
-
-const styles = StyleSheet.create({});
 
 export default HomePageScreen;

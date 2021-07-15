@@ -7,6 +7,7 @@ import LoginFormScreen from "../screens/login-form-screen";
 import HomePageScreen from "../screens/home-page-screen";
 import SignupScreen from "../screens/signup-screen";
 import ProductDetailsScreen from "../screens/product-details-screen";
+import CheckoutScreen from "../screens/checkout-screen";
 
 const defaultStackNavOptions = {
   headerStyle: {
@@ -22,6 +23,7 @@ const navigator = createStackNavigator(
     HomePage: HomePageScreen,
     Signup: SignupScreen,
     ProductDetails: ProductDetailsScreen,
+    Checkout: CheckoutScreen,
   },
   {
     defaultNavigationOptions: defaultStackNavOptions,
