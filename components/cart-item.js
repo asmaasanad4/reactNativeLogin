@@ -1,8 +1,16 @@
 import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  Animated,
+  TouchableOpacity,
+} from "react-native";
 import { Button, NativeBaseProvider } from "native-base";
 import { useSelector, useDispatch } from "react-redux";
 import { Ionicons } from "@expo/vector-icons";
+import Swipeable from "react-native-gesture-handler/Swipeable";
 
 import * as cartAction from "../state/cart/action-creator";
 
@@ -39,49 +47,83 @@ const CartItem = (props) => {
     cartItems.forEach((item, index) => {
       if (item.productId === props.id) {
         cartItems.splice(index, 1);
-        dispatch(cartAction.remveFromCart(props.price));
+        dispatch(cartAction.remveFromCart(props.price * props.quantity));
       }
     });
   };
 
+  const RightActions = (progress, dragX) => {
+    const scale = dragX.interpolate({
+      inputRange: [-100, 0],
+      outputRange: [0.7, 0],
+    });
+    return (
+      <TouchableOpacity onPress={onDeleteHandler}>
+        <View
+          style={{
+            backgroundColor: "red",
+            justifyContent: "center",
+            height: "100%",
+          }}
+        >
+          <Animated.Text
+            style={{
+              color: "white",
+              paddingHorizontal: 10,
+              fontWeight: "600",
+              transform: [{ scale }],
+            }}
+          >
+            Delete
+          </Animated.Text>
+        </View>
+      </TouchableOpacity>
+    );
+  };
+
   return (
-    <View style={styles.con}>
-      <View style={styles.container}>
-        <View style={styles.imageCon}>
-          <Image style={styles.imag} source={{ uri: props.image }} />
-        </View>
-        <View>
-          <Text>{props.name}</Text>
-          <Text>
-            {props.totalAmount} * {props.quantity} $
-          </Text>
-        </View>
-        <NativeBaseProvider>
-          <View style={styles.buttCon}>
-            <Button
-              style={{ backgroundColor: "#DCDCDC" }}
-              onPress={removeButtHandler}
-            >
-              <Ionicons name="remove" color="#1E90FF" size={20} />
-            </Button>
-            <View style={styles.quan}>
-              <Text>{props.quantity}</Text>
-            </View>
-            <Button
-              style={{ backgroundColor: "#DCDCDC" }}
-              onPress={addButtHandler}
-            >
-              <Ionicons name="add" color="#1E90FF" size={20} />
-            </Button>
+    <Swipeable renderRightActions={RightActions}>
+      <View style={styles.con}>
+        <View style={styles.container}>
+          <View style={styles.imageCon}>
+            <Image style={styles.imag} source={{ uri: props.image }} />
           </View>
-        </NativeBaseProvider>
-        <View>
-          <Button style={{ backgroundColor: "red" }} onPress={onDeleteHandler}>
-            <Text>Delete</Text>
-          </Button>
+          <View>
+            <Text>{props.name}</Text>
+            <Text>
+              {props.totalAmount} * {props.quantity} $
+            </Text>
+          </View>
+          <NativeBaseProvider>
+            <View style={styles.buttCon}>
+              <Button
+                style={{ backgroundColor: "#DCDCDC" }}
+                onPress={removeButtHandler}
+              >
+                <Ionicons name="remove" color="#1E90FF" size={20} />
+              </Button>
+              <View style={styles.quan}>
+                <Text>{props.quantity}</Text>
+              </View>
+              <Button
+                style={{ backgroundColor: "#DCDCDC" }}
+                onPress={addButtHandler}
+              >
+                <Ionicons name="add" color="#1E90FF" size={20} />
+              </Button>
+            </View>
+            {/* <View>
+              <Button
+                style={{ backgroundColor: "red" }}
+                onPress={onDeleteHandler}
+              >
+                <Text>Delete</Text>
+              </Button>
+            </View> */}
+          </NativeBaseProvider>
         </View>
       </View>
-    </View>
+    </Swipeable>
   );
 };
 

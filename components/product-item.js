@@ -21,11 +21,13 @@ const ProductItem = (props) => {
   const [addButtton, setAddButtton] = useState(false);
 
   const availableItems = useSelector((state) => state.cartReducer.items);
-  const quantt = useSelector((state) => state.cartReducer.quantity);
+  // const quantt = useSelector((state) => state.cartReducer.quantity);
 
   const dispatch = useDispatch();
 
   let newCartItem;
+  let quantt;
+
   const quantityAll = 1;
   const quantity = 1;
   let alreadyExist = false;
@@ -48,6 +50,13 @@ const ProductItem = (props) => {
     );
     setAddButtton(true);
   };
+  if (alreadyExist) {
+    availableItems.forEach((item) => {
+      if (item.productId === props.id) {
+        quantt = item.quantity;
+      }
+    });
+  }
 
   const addButtHandler = () => {
     availableItems.forEach((item) => {
