@@ -21,16 +21,21 @@ const ProductItem = (props) => {
   const [addButtton, setAddButtton] = useState(false);
 
   const availableItems = useSelector((state) => state.cartReducer.items);
-  // const quantt = useSelector((state) => state.cartReducer.quantity);
+  const addButttons = useSelector((state) => state.cartReducer.addButtton);
 
   const dispatch = useDispatch();
 
+  let newItems;
   let newCartItem;
-  let quantt;
 
-  const quantityAll = 1;
   const quantity = 1;
   let alreadyExist = false;
+
+  if (availableItems) {
+    newItems = availableItems.map((qu) => {
+      return [qu.productId, qu.quantity];
+    });
+  }
 
   const onAddToCart = () => {
     if (!alreadyExist) {
@@ -45,24 +50,15 @@ const ProductItem = (props) => {
       };
       alreadyExist = true;
     }
-    dispatch(
-      cartAction.addToCart(newCartItem, props.price, quantityAll, quantity)
-    );
+    dispatch(cartAction.addToCart(newCartItem, props.price, quantity));
     setAddButtton(true);
   };
-  if (alreadyExist) {
-    availableItems.forEach((item) => {
-      if (item.productId === props.id) {
-        quantt = item.quantity;
-      }
-    });
-  }
 
   const addButtHandler = () => {
     availableItems.forEach((item) => {
       if (item.productId === props.id) {
         item.quantity++;
-        dispatch(cartAction.addQuantity(props.price, quantity));
+        dispatch(cartAction.addQuantity(props.price));
       }
     });
   };
@@ -151,7 +147,11 @@ const ProductItem = (props) => {
                   <Ionicons name="remove" color="#1E90FF" size={20} />
                 </Button>
                 <View style={styles.quan}>
-                  <Text>{quantt}</Text>
+                  <Text>
+                    {newItems.map((qu) => {
+                      if (props.id === qu[0]) return qu[1];
+                    })}
+                  </Text>
                 </View>
                 <Button
                   style={{

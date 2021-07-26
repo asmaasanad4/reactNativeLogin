@@ -9,7 +9,7 @@ const initialState = {
   items: [],
   totalAmount: 0,
   quantityAll: 0,
-  quantity: 0,
+  addButtton: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -19,8 +19,8 @@ const reducer = (state = initialState, action) => {
         ...state,
         items: [...state.items, action.product],
         totalAmount: state.totalAmount + action.totalAmount,
-        quantityAll: state.quantityAll + action.quantity,
-        quantity: state.quantity + action.quantity,
+        quantityAll: state.quantityAll + action.quantityAll,
+        addButtton: true,
       };
     case ADD_QUANTITY:
       return {
@@ -28,7 +28,7 @@ const reducer = (state = initialState, action) => {
         items: [...state.items],
         totalAmount: state.totalAmount + action.productPrice,
         quantityAll: state.quantityAll,
-        quantity: state.quantity + action.quantity,
+        addButtton: true,
       };
     case SUB_QUANTITY:
       return {
@@ -36,7 +36,7 @@ const reducer = (state = initialState, action) => {
         items: [...state.items],
         totalAmount: state.totalAmount - action.productPrice,
         quantityAll: state.quantityAll,
-        quantity: state.quantity - 1,
+        addButtton: true,
       };
     case REMOVE_FROM_CART:
       return {
@@ -44,7 +44,7 @@ const reducer = (state = initialState, action) => {
         items: [...state.items],
         totalAmount: state.totalAmount - action.productPrice,
         quantityAll: state.quantityAll - 1,
-        quantity: state.quantity - 1,
+        addButtton: false,
       };
     default:
       return state;

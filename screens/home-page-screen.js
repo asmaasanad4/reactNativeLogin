@@ -29,7 +29,7 @@ const HomePageScreen = (props) => {
   };
 
   useEffect(() => {
-    fetch(`http://446d5e47b437.ngrok.io/product`)
+    fetch(`http://df8fc1647d61.ngrok.io/product`)
       .then((response) => response.json())
       .then((data) => {
         setProductsData(data);

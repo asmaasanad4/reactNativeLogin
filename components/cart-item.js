@@ -112,14 +112,6 @@ const CartItem = (props) => {
                 <Ionicons name="add" color="#1E90FF" size={20} />
               </Button>
             </View>
-            {/* <View>
-              <Button
-                style={{ backgroundColor: "red" }}
-                onPress={onDeleteHandler}
-              >
-                <Text>Delete</Text>
-              </Button>
-            </View> */}
           </NativeBaseProvider>
         </View>
       </View>

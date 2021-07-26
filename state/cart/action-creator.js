@@ -5,13 +5,12 @@ import {
   SUB_QUANTITY,
 } from "./actions";
 
-export const addToCart = (product, totalAmount, quantityAll, quantity) => {
+export const addToCart = (product, totalAmount, quantityAll) => {
   return {
     type: ADD_TO_CART,
     product,
     totalAmount,
     quantityAll,
-    quantity,
   };
 };
 
@@ -22,11 +21,10 @@ export const remveFromCart = (productPrice) => {
   };
 };
 
-export const addQuantity = (productPrice, quantity) => {
+export const addQuantity = (productPrice) => {
   return {
     type: ADD_QUANTITY,
     productPrice,
-    quantity,
   };
 };
 

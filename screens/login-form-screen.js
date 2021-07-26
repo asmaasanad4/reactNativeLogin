@@ -20,7 +20,7 @@ const LoginFormScreen = (props) => {
   const loginHandler = () => {
     dispatch(action.tryLogin(email, password));
     console.log(email, password, "email password");
-    fetch(`http://446d5e47b437.ngrok.io/users`)
+    fetch(`http://df8fc1647d61.ngrok.io/users`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data[0].email, data[0].password, "ddddddddd");
