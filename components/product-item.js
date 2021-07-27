@@ -21,7 +21,6 @@ const ProductItem = (props) => {
   const [addButtton, setAddButtton] = useState(false);
 
   const availableItems = useSelector((state) => state.cartReducer.items);
-  const addButttons = useSelector((state) => state.cartReducer.addButtton);
 
   const dispatch = useDispatch();
 
